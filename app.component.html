@@ -1,0 +1,68 @@
+<div style="text-align:center">
+  <form >
+    <input type="text" [(ngModel)] = "result" [ngModelOptions]= "{standalone: true}" >
+    <br>
+    {{result}}
+  </form>
+</div>
+
+<h3>Register Form</h3>
+<form [formGroup]="registerForm" (ngSubmit)="save()" style="text-align:center">
+  <table>
+    <tr>
+      <td>Username</td>
+      <td>
+        <input type="text" formControlName = "username" focus = "autofocus">
+      </td>
+    </tr>
+    <tr>
+        <td>Password</td>
+        <td>
+          <input type="password" formControlName = "password">
+        </td>
+      </tr>
+      <tr>
+        <td valign = "top" >Status</td>
+        <td>
+          <input type="checkbox" formControlName = "status">
+        </td>
+      </tr>
+      <tr>
+        <td valign = "top" > Languages</td>
+        <td>
+          <div *ngFor = "let language of languages">
+              <input type="checkbox"
+              formControlName = "languages"
+              value = "{{language.id}}"
+              (change) = "onCheckboxChange(language, $event)"> {{language.name}}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td valign = "top" >Role</td>
+        <td>
+          <select formControlName = "role" >
+            <option *ngFor = "let role of roles" value="{{role.id}}">
+              {{role.name}}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td valign = "top" >Certificates</td>
+        <td>
+          <select formControlName = "certificates" multiple = "multiple">
+            <option *ngFor = "let certificate of certificates" value="{{certificate.value}}">
+              {{certificate.display}}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td> &nbsp;</td>
+        <td>
+          <button type="submit" value="Save">Save</button>
+        </td>
+      </tr>
+  </table>
+</form>
